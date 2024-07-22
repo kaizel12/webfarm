@@ -10,28 +10,29 @@
         .banner {
             position: relative;
             background: url('banner.jpg') no-repeat center center/cover;
-            height: 70vh;
+            height: 50vh; /* Ubah tinggi menjadi 50vh */
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Ubah alignment ke atas */
             justify-content: center;
             color: white;
             text-align: center;
+            padding: 1rem; /* Tambahkan padding */
         }
 
         .banner-content {
-            z-index: 1;
             background: rgba(0, 0, 0, 0.5);
             padding: 1rem;
             border-radius: 10px;
+            margin-top: 1rem; /* Tambahkan margin-top */
         }
 
         .banner-content h1 {
-            font-size: 3rem;
+            font-size: 2.5rem; /* Ubah ukuran font */
             margin: 0;
         }
 
         .banner-content p {
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Ubah ukuran font */
             margin: 0;
         }
 
@@ -165,7 +166,7 @@
     </footer>
 
     <script>
-        // Fungsi untuk memuat informasi terbaru dari server
+        // Fungsi untuk memuat informasi terbaru dari Detik
         async function fetchNews() {
             try {
                 const response = await fetch('/api/news'); // Endpoint yang disediakan oleh server
