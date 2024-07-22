@@ -23,4 +23,25 @@ app.get('/news', async (req, res) => {
 
         $('.news-item').each((i, elem) => {
             news.push({
-               
+                title: $(elem).find('.news-title').text(),
+                link: $(elem).find('a').attr('href'),
+                summary: $(elem).find('.news-summary').text()
+            });
+        });
+
+        res.json(news);
+    } catch (error) {
+        console.error('Error fetching news:', error);
+        res.status(500).send('Error fetching news');
+    }
+});
+
+app.post('/send-message', (req, res) => {
+    const { name, email, message } = req.body;
+    // Handle form submission logic
+    res.send('Pesan telah terkirim!');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
