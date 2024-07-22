@@ -63,9 +63,14 @@
         <h2>Produk</h2>
         <div class="products-list">
             <div class="product-item">
-                <img src="https://telegra.ph/file/37f0113cf9da66f80e37f.jpg" alt="Produk 1">
+                <img src="banner.jpg" alt="Produk 1">
                 <h3>Produk 1</h3>
                 <p>Deskripsi produk 1.</p>
+                <form action="/send-message" method="post">
+                    <input type="hidden" name="product" value="Produk 1">
+                    <input type="number" name="quantity" placeholder="Jumlah" min="1" required>
+                    <button type="submit">Beli</button>
+                </form>
             </div>
             <!-- More products -->
         </div>
@@ -96,9 +101,9 @@
     <section id="contact">
         <h2>Kontak Kami</h2>
         <form action="/send-message" method="post">
-            <input type="text" name="name" placeholder="Nama">
-            <input type="email" name="email" placeholder="Email">
-            <textarea name="message" placeholder="Pesan"></textarea>
+            <input type="text" name="name" placeholder="Nama" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Pesan" required></textarea>
             <button type="submit">Kirim</button>
         </form>
     </section>
