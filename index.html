@@ -4,129 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peternakan Modern</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Gaya CSS */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            margin-left: 20px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-right: 10px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .search-bar {
-            margin-right: 20px;
-        }
-
-        .search-bar input {
-            padding: 5px;
-        }
-
-        .search-bar button {
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        section {
-            padding: 20px;
-        }
-
+        /* Gaya CSS untuk halaman utama */
         .banner {
             position: relative;
+            background: url('banner.jpg') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             text-align: center;
         }
 
         .banner-content {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
+            z-index: 1;
             background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
+            padding: 1rem;
+            border-radius: 10px;
         }
 
-        .products-list, .services-list, .blog-list {
-            display: flex;
-            flex-wrap: wrap;
+        .banner-content h1 {
+            font-size: 3rem;
+            margin: 0;
         }
 
-        .product-item, .service-item, .blog-item {
-            flex: 1;
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-
-        .product-item img, .team-member img {
-            max-width: 100%;
-        }
-
-        footer {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .social-media a {
-            color: #fff;
-            margin-right: 10px;
-            text-decoration: none;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-        }
-
-        .contact-form button {
-            padding: 10px 20px;
-            background: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
+        .banner-content p {
+            font-size: 1.5rem;
+            margin: 0;
         }
     </style>
 </head>
@@ -152,9 +58,6 @@
 
     <section id="home">
         <div class="banner">
-            <div class="slider">
-                <!-- Slider Images -->
-            </div>
             <div class="banner-content">
                 <h1>Selamat Datang di Peternakan Modern</h1>
                 <p>Peternakan dengan teknologi dan inovasi terkini.</p>
@@ -228,13 +131,27 @@
     </footer>
 
     <script>
-        function submitOrder(productName) {
-            const quantity = document.getElementById('quantity').value;
-            const phoneNumber = '628131234567'; // Ganti dengan nomor telepon yang benar
-            const message = `Beli ${quantity} ${productName}`;
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.location.href = url;
+        // Fungsi untuk memuat informasi terbaru dari website eksternal
+        async function fetchNews() {
+            try {
+                const response = await fetch('https://api.example.com/latest-news'); // Ganti dengan endpoint yang benar
+                const data = await response.json();
+                const newsContent = document.getElementById('news-content');
+                newsContent.innerHTML = data.articles.map(article => `
+                    <div class="news-item">
+                        <h3>${article.title}</h3>
+                        <p>${article.description}</p>
+                        <a href="${article.url}">Baca selengkapnya</a>
+                    </div>
+                `).join('');
+            } catch (error) {
+                const newsContent = document.getElementById('news-content');
+                newsContent.innerHTML = '<p>Gagal memuat informasi terbaru.</p>';
+            }
         }
+
+        // Panggil fungsi saat halaman dimuat
+        fetchNews();
     </script>
 </body>
 </html>
