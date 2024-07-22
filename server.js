@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const { scrapeDetik } = require('./scraper');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -41,6 +42,15 @@ app.post('/send-message', (req, res) => {
     // Handle form submission logic here (e.g., send email or save data)
     console.log(`Order received: ${name}, ${email}, ${message}, Product: ${product}, Quantity: ${quantity}`);
     res.send('Pesanan telah dikirim!');
+});
+
+app.get('/api/news', async (req, res) => {
+    try {
+        const news = await scrapeDetik();
+        res.json(news);
+    } catch (error) {
+        res.status(500).json({ error: 'Gagal memuat berita' });
+    }
 });
 
 app.listen(PORT, () => {
