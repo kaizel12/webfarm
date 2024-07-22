@@ -16,16 +16,16 @@ app.get('/', (req, res) => {
 
 app.get('/news', async (req, res) => {
     try {
-        const response = await axios.get('https://example.com/news'); // Ganti dengan URL situs berita peternakan
+        const response = await axios.get('https://www.agribusinessglobal.com/');
         const html = response.data;
         const $ = cheerio.load(html);
         let news = [];
 
-        $('.news-item').each((i, elem) => {
+        $('.article-teaser').each((i, elem) => {
             news.push({
-                title: $(elem).find('.news-title').text(),
+                title: $(elem).find('.title').text().trim(),
                 link: $(elem).find('a').attr('href'),
-                summary: $(elem).find('.news-summary').text()
+                summary: $(elem).find('.summary').text().trim()
             });
         });
 
@@ -37,9 +37,10 @@ app.get('/news', async (req, res) => {
 });
 
 app.post('/send-message', (req, res) => {
-    const { name, email, message } = req.body;
-    // Handle form submission logic
-    res.send('Pesan telah terkirim!');
+    const { name, email, message, product, quantity } = req.body;
+    // Handle form submission logic here (e.g., send email or save data)
+    console.log(`Order received: ${name}, ${email}, ${message}, Product: ${product}, Quantity: ${quantity}`);
+    res.send('Pesanan telah dikirim!');
 });
 
 app.listen(PORT, () => {
