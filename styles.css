@@ -95,3 +95,28 @@ footer {
     margin: 0 0.5rem;
     text-decoration: none;
 }
+
+#news-section {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+#news-content .news-item {
+    margin-bottom: 1rem;
+}
+
+#news-content .news-item h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #4CAF50;
+}
+
+#news-content .news-item p {
+    margin: 0.5rem 0;
+}
+
+#news-content .news-item a {
+    color: #4CAF50;
+    text-decoration: none;
+}
