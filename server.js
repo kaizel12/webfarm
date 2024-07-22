@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,12 +14,13 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.post('/send-message', (req, res) => {
-    const { name, email, message } = req.body;
-    // Handle form submission logic
-    res.send('Pesan telah terkirim!');
-});
+app.get('/news', async (req, res) => {
+    try {
+        const response = await axios.get('https://example.com/news'); // Ganti dengan URL situs berita peternakan
+        const html = response.data;
+        const $ = cheerio.load(html);
+        let news = [];
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+        $('.news-item').each((i, elem) => {
+            news.push({
+               
